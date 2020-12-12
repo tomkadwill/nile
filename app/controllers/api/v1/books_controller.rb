@@ -1,5 +1,3 @@
-require 'net/http'
-
 module Api
   module V1
     class BooksController < ApplicationController
@@ -14,7 +12,7 @@ module Api
       def create
         author = Author.create!(author_params)
         book = Book.new(book_params.merge(author_id: author.id))
-        UpdateSkuJob.perform_later(book_params[:name])
+        UpdateSkuJob.perform_later(book_params[:title])
 
         if book.save
           render json: BookRepresenter.new(book).as_json, status: :created

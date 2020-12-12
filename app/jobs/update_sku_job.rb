@@ -1,3 +1,5 @@
+require 'net/http'
+
 class UpdateSkuJob < ApplicationJob
   queue_as :default
 
